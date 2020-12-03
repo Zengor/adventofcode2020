@@ -15,7 +15,9 @@ fn day01(c: &mut Criterion) {
     bench!(g, "part 1 hashset", part1, &input);
     bench!(g, "part 1 combinations", part1_combinations, &input);
     bench!(g, "part 1 regular loop", part1_regular_loop, &input);
+    bench!(g, "part 1 jake", part1_jake, &input);
     bench!(g, "part 2 combinations", part2_combinations, &input);
+    bench!(g, "part 2 jake", part2_jake, &input);
 }
 
 criterion_group!(benches, day01);

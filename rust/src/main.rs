@@ -5,5 +5,7 @@ fn main() {
     println!("part 1 {:?}", day01::part1(input));
     println!("part 1 comb {:?}", day01::part1_combinations(input));
     println!("part 1 regular loop {:?}", day01::part1_regular_loop(input));
+    println!("part 1 jake {:?}", day01::part1_jake(input));
     println!("part 2 comb {:?}", day01::part2_combinations(input));
+    println!("part 2 jake {:?}", day01::part2_jake(input));
 }

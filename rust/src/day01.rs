@@ -56,3 +56,47 @@ pub fn part2(input: &str) -> u32 {
     }
     unreachable!("It's assumed there is a solution in the list");
 }
+
+pub fn part1_jake(input: &str) -> u32 {
+    use itertools::Itertools;
+    let nums: Vec<_> = input.lines().map(|l| l.parse().unwrap()).sorted().collect();
+    let (a, b) = find_sum2(&nums, 2020).unwrap();
+    a * b
+}
+
+pub fn part2_jake(input: &str) -> u32 {
+    use itertools::Itertools;
+    let nums: Vec<_> = input.lines().map(|l| l.parse().unwrap()).sorted().collect();
+    let (a, b, c) = find_sum3(&nums, 2020).unwrap();
+    a * b * c
+}
+
+pub fn find_sum2(numbers: &[u32], target: u32) -> Option<(u32, u32)> {
+    if numbers.is_empty() {
+        return None;
+    }
+    let a = numbers[0];
+    let b = numbers[numbers.len() - 1];
+    let sum = a + b;
+    if sum < target {
+        find_sum2(&numbers[1..], target)
+    } else if sum > target {
+        find_sum2(&numbers[..numbers.len() - 1], target)
+    } else {
+        Some((a, b))
+    }
+}
+
+pub fn find_sum3(numbers: &[u32], target: u32) -> Option<(u32, u32, u32)> {
+    if numbers.is_empty() {
+        return None;
+    }
+
+    let c = numbers[0];
+    let tail = &numbers[1..];
+    if let Some((a, b)) = find_sum2(tail, target - c) {
+        Some((a, b, c))
+    } else {
+        find_sum3(tail, target)
+    }
+}
