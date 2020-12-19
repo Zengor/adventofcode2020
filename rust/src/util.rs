@@ -35,6 +35,13 @@ impl<T> Matrix<T> {
         }
     }
 
+    pub fn with_capacity_wh(width: usize, height: usize) -> Matrix<T> {
+        Matrix {
+            data: Vec::with_capacity(width * height),
+            width,
+        }
+    }
+
     pub fn push(&mut self, value: T) {
         self.data.push(value);
     }
@@ -43,6 +50,18 @@ impl<T> Matrix<T> {
     /// elements need to be iterated in order
     pub fn inner(&self) -> &[T] {
         &self.data
+    }
+
+    pub fn iter(&self) -> impl Iterator<Item = &T> {
+        self.data.iter()
+    }
+
+    pub fn clear(&mut self) {
+        self.data.clear();
+    }
+
+    pub fn append(&mut self, other: &mut Vec<T>) {
+        self.data.append(other)
     }
 }
 
